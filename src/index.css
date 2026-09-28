@@ -10,10 +10,11 @@ html {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #e5e7eb;
   
-  background-image: url("background.jpg");
+  /* background-image: url("background.jpg");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center; */
   background-size: 80cm;  
   
   color: #1f2937;

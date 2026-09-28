@@ -1,48 +1,55 @@
 import React from "react";
 import { Routes, Route, Link, useParams } from "react-router-dom";
 
+const BASE = import.meta.env.BASE_URL;
+
 const helpData = {
   lock: {
-  title: "How to use the lock",
-  icon: "🔒",
-  description: "Learn how to lock and unlock your bike.",
+    title: "How to use the lock",
+    icon: "🔒",
+    description: "Learn how to lock and unlock your bike.",
 
-  videos: [
-    {
-      title:( <>"How to lock your bike type (<strong>Velo7/ LEV/ UCLL</strong>)"</>),
-      src: "/videos/lock1.mp4",
-    },
-    {
-      title: (<>"How to lock your bike type (<strong>Second Hand bike</strong>)"</>),
-      src: "/videos/lock2.mp4",
-    },
-  ],
-
- 
-},
+    videos: [
+      {
+        title: (
+          <>
+            How to lock your bike type (
+            <strong>Velo7 / LEV / UCLL</strong>)
+          </>
+        ),
+        src: `${BASE}videos/lock1.mp4`,
+      },
+      {
+        title: (
+          <>
+            How to lock your bike type (
+            <strong>Second Hand bike</strong>)
+          </>
+        ),
+        src: `${BASE}videos/lock2.mp4`,
+      },
+    ],
+  },
 
   gears: {
     title: "How to use the break",
     icon: "⚙️",
-    video: "/videos/break.mp4",
+    video: `${BASE}videos/break.mp4`,
     description: "Learn how to use the break correctly.",
-    
   },
 
   lights: {
     title: "How to use the lights",
     icon: "💡",
-    video: "/videos/lights.mp4",
+    video: `${BASE}videos/lights.mp4`,
     description: "Learn how to turn the bike lights on and off.",
-    
   },
 
   battery: {
     title: "How to use the battery",
     icon: "🔋",
-    video: "/videos/battery.mp4",
+    video: `${BASE}videos/battery.mp4`,
     description: "Learn how to use and charge the battery.",
-    
   },
 };
 
@@ -50,18 +57,30 @@ function Home() {
   return (
     <main className="home">
       <div className="container">
-        <div className="logotitle"><img src="logo.jpg" alt="logotitle" /></div>
+
+        <div className="logotitle">
+          <img
+            src={`${BASE}logo.jpg`}
+            alt="Bike Help"
+          />
+        </div>
 
         <h1>Bike Help</h1>
 
         <p className="intro">
-          Choose which thing like to know about:
+          Choose which thing you would like to know about:
         </p>
 
         <div className="help-grid">
           {Object.entries(helpData).map(([id, item]) => (
-            <Link key={id} to={`/help/${id}`} className="help-card">
-              <div className="card-icon">{item.icon}</div>
+            <Link
+              key={id}
+              to={`/help/${id}`}
+              className="help-card"
+            >
+              <div className="card-icon">
+                {item.icon}
+              </div>
 
               <h2>{item.title}</h2>
 
@@ -69,6 +88,7 @@ function Home() {
             </Link>
           ))}
         </div>
+
       </div>
     </main>
   );
@@ -76,7 +96,6 @@ function Home() {
 
 function HelpPage() {
   const { topic } = useParams();
-
   const item = helpData[topic];
 
   if (!item) {
@@ -96,72 +115,83 @@ function HelpPage() {
   return (
     <main className="page">
       <div className="container">
+
         <Link to="/" className="back-link">
           ← Back
         </Link>
 
         <div className="help-content">
-          <div className="page-icon">{item.icon}</div>
-          
+
+          <div className="page-icon">
+            {item.icon}
+          </div>
+
           <h1>{item.title}</h1>
 
-          <p className="description">{item.description}</p>
-           
-        
-  {item.videos ? (
-  <div className="videos-container">
-    {item.videos.map((video, index) => (
-      <div className="video-section" key={index}>
-        <h2>{video.title}</h2>
+          <p className="description">
+            {item.description}
+          </p>
 
-        <div className="video-container">
-          <video
-          
-           muted
-            playsInline
-            autoPlay
-            loop
-            className="video"
-          >
-            <source src={video.src} type="video/mp4" />
-            Your browser does not support video playback.
-          </video>
-        </div>
-      </div>
-    ))}
-  </div>
-) : (
-  <div className="video-container">
-    <video
-      muted
-      playsInline
-      autoPlay
-      loop
-      className="video"
-    >
-      <source src={item.video} type="video/mp4" />
-      Your browser does not support video playback.
-    </video>
-  </div>
-)}
+          {/* Multiple videos */}
+          {item.videos ? (
+            <div className="videos-container">
 
-          {/* <section className="steps">
-            <h2>How does it work?</h2>
+              {item.videos.map((video, index) => (
+                <div
+                  className="video-section"
+                  key={index}
+                >
+                  <h2>{video.title}</h2>
 
-            <ol>
-              {item.steps.map((step, index) => (
-                <li key={index}>
-                  <span className="step-number">{index + 1}</span>
+                  <div className="video-container">
+                    <video
+                      muted
+                      playsInline
+                      autoPlay
+                      loop
+                      className="video"
+                    >
+                      <source
+                        src={video.src}
+                        type="video/mp4"
+                      />
 
-                  <span>{step}</span>
-                </li>
+                      Your browser does not support video playback.
+                    </video>
+                  </div>
+                </div>
               ))}
-            </ol>
-          </section> */}
 
-          <Link to="/" className="back-button">
+            </div>
+          ) : (
+
+            /* Single video */
+            <div className="video-container">
+              <video
+                muted
+                playsInline
+                autoPlay
+                loop
+                className="video"
+              >
+                <source
+                  src={item.video}
+                  type="video/mp4"
+                />
+
+                Your browser does not support video playback.
+              </video>
+            </div>
+
+          )}
+
+          <Link
+            to="/"
+            className="back-button"
+          >
             ← Back to Bike Help
           </Link>
+
         </div>
       </div>
     </main>
@@ -171,9 +201,15 @@ function HelpPage() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={<Home />}
+      />
 
-      <Route path="/help/:topic" element={<HelpPage />} />
+      <Route
+        path="/help/:topic"
+        element={<HelpPage />}
+      />
     </Routes>
   );
 }
