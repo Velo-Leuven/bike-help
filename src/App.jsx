@@ -55,9 +55,14 @@ const helpData = {
 
 function Home() {
   return (
-    <main className="home">
+    <main className="home"
+    style={{
+    backgroundImage: `url(${BASE}background.jpg)`,
+  }}
+    
+    >
       <div className="container">
-
+      
         <div className="logotitle">
           <img
             src={`${BASE}logo.jpg`}
