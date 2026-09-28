@@ -2,7 +2,7 @@
   "name": "bike-help",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://fahadleuven.github.io/bike-help",
+  "homepage": "https://Velo-Leuven.github.io/bike-help",
   "type": "module",
   "scripts": {
     "dev": "vite",
