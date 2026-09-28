@@ -149,6 +149,7 @@ function HelpPage() {
                       playsInline
                       autoPlay
                       loop
+                       preload="metadata"
                       className="video"
                     >
                       <source
@@ -172,6 +173,7 @@ function HelpPage() {
                 playsInline
                 autoPlay
                 loop
+                preload="metadata"
                 className="video"
               >
                 <source
