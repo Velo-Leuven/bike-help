@@ -32,10 +32,10 @@ const helpData = {
   },
 
   gears: {
-    title: "How to use the break",
+    title: "How to use the brake",
     icon: "⚙️",
     video: `${BASE}videos/break.mp4`,
-    description: "Learn how to use the break correctly.",
+    description: "Learn how to use the brake correctly.",
   },
 
   lights: {
